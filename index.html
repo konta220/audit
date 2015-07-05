@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MoneyCount</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/superhero/bootstrap.min.css" rel="stylesheet">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="money.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>会計監査</h1>
+            <p id="date_text">監査日時: 2015年07月06日(月)</p>
+            <hr>
+            <h2>集金</h2>
+            <table class="table table-hover" id="input_mony">
+                <thead>
+                    <tr>
+                        <th id="value">貨幣</th>
+                        <th id="name">(名称)</th>
+                        <th>数量</th>
+                        <th>(確認)</th>
+                        <th id="price">小計金額 (円)</th>
+                        <th id="name_price">呼び名 (円)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="value">10,000</td>
+                        <td id="name">一万 円札</td>
+                        <td><input type="number" id="count" value="0" min="0"></td>
+                        <td id="check"></td>
+                        <td id="price">0</td>
+                        <td id="name_price"></td>
+                    </tr>
+                    <tr>
+                        <td id="value">5,000</td>
+                        <td>五千 円札</td>
+                        <td><input type="number" id="count" value="0" min="0"></td>
+                        <td id="check"></td>
+                        <td id="price">0</td>
+                        <td id="name_price"></td>
+                    </tr>
+                    <tr>
+                        <td id="value">1,000</td>
+                        <td>千 円札</td>
+                        <td><input type="number" id="count" value="0" min="0"></td>
+                        <td id="check"></td>
+                        <td id="price">0</td>
+                        <td id="name_price"></td>
+                    </tr>
+                    <tr>
+                        <td id="value">500</td>
+                        <td>500 円玉</td>
+                        <td><input type="number" id="count" value="0" min="0"></td>
+                        <td id="check"></td>
+                        <td id="price">0</td>
+                        <td id="name_price"></td>
+                    </tr>
+                    <tr>
+                        <td id="value">100</td>
+                        <td>100 円玉</td>
+                        <td><input type="number" id="count" value="0" min="0"></td>
+                        <td id="check"></td>
+                        <td id="price">0</td>
+                        <td id="name_price"></td>
+                    </tr>
+                    <tr>
+                        <td id="value">50</td>
+                        <td>50 円玉</td>
+                        <td><input type="number" id="count" value="0" min="0"></td>
+                        <td id="check"></td>
+                        <td id="price">0</td>
+                        <td id="name_price"></td>
+                    </tr>
+                    <tr>
+                        <td id="value">10</td>
+                        <td>10 円玉</td>
+                        <td><input type="number" id="count" value="0" min="0"></td>
+                        <td id="check"></td>
+                        <td id="price">0</td>
+                        <td id="name_price"></td>
+                    </tr>
+                    <tr>
+                        <td id="value">5</td>
+                        <td>5 円玉</td>
+                        <td><input type="number" id="count" value="0" min="0"></td>
+                        <td id="check"></td>
+                        <td id="price">0</td>
+                        <td id="name_price"></td>
+                    </tr>
+                    <tr>
+                        <td id="value">1</td>
+                        <td>1 円玉</td>
+                        <td><input type="number" id="count" value="0" min="0"></td>
+                        <td id="check"></td>
+                        <td id="price">0</td>
+                        <td id="name_price"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <h2>監査報告</h2>
+            <table class="table table-hover" id="result_table">
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td id="name">合計金額 (円)</td>
+                        <td id="result_price">0</td>
+                        <td id="name_result"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td id="name">換算(人分)</td>
+                        <td id="result_value">0</td>
+                        <td id="result"></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td id="name">監査結果 (円)</td>
+                        <td id="result_price">0</td>
+                        <td id="result"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <h2>寮費</h2>
+            <table class="table table-hover" id="home_price">
+                <thead>
+                    <tr>
+                        <td>寮費 (円)</td>
+                        <td></td>
+                        <td>人数 (人)</td>
+                        <td></td>
+                        <td>金額 (円)</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="number" id="one_price" name="寮費" value="20000" min="0"></td>
+                        <td>×</td>
+                        <td><input type="number" name="人数" id="person" value="1" min="1"></td>
+                        <td>＝</td>
+                        <td  id="sum_price">0</td>
+                    </tr>
+
+                    <tr>
+                        <td id="name_price"></td>
+                        <td>×</td>
+                        <td id="name_person"></td>
+                        <td>＝</td>
+                        <td id="name_sum"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
