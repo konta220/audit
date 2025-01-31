@@ -1,79 +1,80 @@
 
 function changed() {
-    var sum_price = sum();
-    var goal_price = home_price();
+    let sum_price = sum();
+    let goal_price = home_price();
     price_check(sum_price, goal_price);
 
     replace_date();
 }
 
+const jp_week = ["日", "月", "火", "水", "木", "金", "土"];
+
 function replace_date() {
 
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = date.getMonth() + 1;
-    var week = date.getDay();
-    var day = date.getDate();
-    var jp_week = new Array("日", "月", "火", "水", "木", "金", "土");
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const week = date.getDay();
+    const day = date.getDate();
 
-    var set_date = ("" + year + "年" + ("0" + month).slice(-2) + "月" + ("0" + day).slice(-2) + "日 (" + jp_week[week] + ")");
+    const set_date = ("" + year + "年" + ("0" + month).slice(-2) + "月" + ("0" + day).slice(-2) + "日 (" + jp_week[week] + ")");
 
-    var hour = date.getHours();
-    var minute = date.getMinutes();
-    var second = date.getSeconds();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const second = date.getSeconds();
 
-    var set_time = ("" + ("0" + hour).slice(-2) + "時" + ("0" + minute).slice(-2) + "分" + ("0" + second).slice(-2) + "秒");
+    const set_time = ("" + ("0" + hour).slice(-2) + "時" + ("0" + minute).slice(-2) + "分" + ("0" + second).slice(-2) + "秒");
 
     $('p#date_text').text("監査日時: " + set_date + " " + set_time);
 }
 
 function price_check(sum_price, goal_price) {
-    var person = Math.floor(sum_price / goal_price.one_price);
+    const person = Math.floor(sum_price / goal_price.one_price);
     $('table#result_table tr:eq(1) td#result_value').text(person);
 
-    var result_person = person - goal_price.person;
+    const result_person = person - goal_price.person;
     $('table#result_table tr:eq(1) td#result').text(add_plusminus(result_person));
 
-    var result_price = sum_price - goal_price.sum_price;
+    const result_price = sum_price - goal_price.sum_price;
     $('table#result_table tr:eq(2) td#result_price').text(separate(add_plusminus(result_price)));
     $('table#result_table tr:eq(2) td#result').text(result_price === 0 ? "適正" : (result_price > 0 ? "過多" : "不足"));
 }
 
 function add_plusminus(value) {
-    var res;
     if (value > 0) {
-        res = "+" + value;
-    } else if (value === 0) {
-        res = "±" + value;
-    } else {
-        res = value;
+        return "+" + value;
     }
-    return res;
+
+    if (value === 0) {
+        return "±" + value;
+    }
+
+    return value;
 }
 
 function home_price() {
-    var one_price = $('table#home_price tbody td #one_price').val();
+    const one_price = $('table#home_price tbody td #one_price').val();
     $('table#home_price tbody #name_price').text(name_separate(one_price));
-    var person = $('table#home_price tbody td #person').val();
+    const person = $('table#home_price tbody td #person').val();
     $('table#home_price tbody #name_person').text(person);
 
-    var sum_price = one_price * person;
+    const sum_price = one_price * person;
     $('table#home_price tbody #sum_price').text(separate(sum_price));
     $('table#home_price tbody #name_sum').text(name_separate(sum_price));
 
-    return {'one_price': one_price, 'person': person, 'sum_price': sum_price};
+    return { 'one_price': one_price, 'person': person, 'sum_price': sum_price };
 }
 
 function sum() {
-    var len = ($('table#input_mony tbody tr').size());
+    const len = ($('table#input_mony tbody tr').size());
 
-    var sum = 0;
-    for (var i = 0; i < len; i++) {
-        var value = $('table#input_mony tbody tr:eq(' + i + ') td#value').text().replace(",", "");
-        var count = $('table#input_mony tbody tr:eq(' + i + ') #count').val();
+    let sum = 0;
+    for (let i = 0; i < len; i++) {
+        let value = $('table#input_mony tbody tr:eq(' + i + ') td#value').text().replace(",", "");
+        let count = $('table#input_mony tbody tr:eq(' + i + ') #count').val();
         $('table#input_mony tbody tr:eq(' + i + ') #check').text(separate(count));
 
-        var price = value * count;
+        let price = value * count;
 
         $('table#input_mony tbody tr:eq(' + i + ') td#price').text(separate(price));
         $('table#input_mony tbody tr:eq(' + i + ') td#name_price').text(name_separate(price));
@@ -93,14 +94,15 @@ function separate(num) {
 }
 
 function name_separate(num) {
-    if (num === 0)
+    if (num === 0) {
         return "";
-    if (num < 100)
+    }
+    if (num < 100) {
         return num;
+    }
 
-
-    var str = "";
-    var count;
+    let str = "";
+    let count;
     if ((count = Math.floor(num / 10000)) > 0) {
         str += count + "万 ";
     }
